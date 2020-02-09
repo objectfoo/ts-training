@@ -1,25 +1,30 @@
 import React from 'react';
-import logo from './logo.svg';
+import FancyComponent from './fancy-component';
 import './App.css';
+
+type MyData = {
+  id?: string;
+  name?: string;
+};
+
+const data: MyData[] = [
+  { id: '0', name: 'Record number zero' },
+  { id: '1' },
+  { id: '2', name: 'Record number two' },
+];
 
 const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FancyComponent
+      definitions={[
+        { name: "0001", getMeta: (a) => a?.id ?? "no id" },
+        { name: "0002", getMeta: (a) => a?.name ?? "no name" },
+      ]}
+      data={data}
+      mapper={
+        (a) => <div>{`${a?.id ?? "no id"}: ${a?.name ?? "no name"}`}</div>
+      }
+    />
   );
 }
 
