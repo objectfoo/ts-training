@@ -3,7 +3,7 @@ import FancyComponent from './fancy-component';
 import './App.css';
 
 type MyData = {
-  id?: string;
+  id: string;
   name?: string;
 };
 
@@ -21,9 +21,9 @@ const App = () => {
         { name: "0002", getMeta: (a) => a?.name ?? "no name" },
       ]}
       data={data}
-      mapper={
-        (a) => <div>{`${a?.id ?? "no id"}: ${a?.name ?? "no name"}`}</div>
-      }
+      mapper={(a) => {
+        return <p key={a.id}>{`${a.id}${a?.name ?? "no name"}`}</p>;
+      }}
     />
   );
 }
